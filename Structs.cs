@@ -2,23 +2,6 @@
 using ObjCRuntime;
 
 [Native]
-public enum TVOCallState : ulong	
-{
-	Connecting = 0,
-	Connected,
-	Disconnected
-}
-[Native]
-public enum TVOCallInviteState : ulong
-{
-	Pending = 0,
-	Accepted,
-	Rejected,
-	Cancelled
-}
-
-
-[Native]
 public enum TVOLogLevel : ulong
 {
 	Off = 0,
@@ -36,4 +19,19 @@ public enum TVOLogModule : ulong
 	Notify
 }
 
- 
+[Native]
+public enum TVOCallInviteState : ulong
+{
+	Pending = 0,
+	Accepted,
+	Rejected,
+	Cancelled
+}
+
+[Native]
+public enum TVOCallState : ulong
+{
+	Connecting = 0,
+	Connected,
+	Disconnected
+}
