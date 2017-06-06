@@ -1,7 +1,21 @@
 ﻿using System;
 using Foundation;
 using ObjCRuntime;
- 
+
+
+[Static]
+
+partial interface Constants
+{
+	// extern double TwilioVoiceClientVersionNumber;
+	[Field("TwilioVoiceClientVersionNumber", "__Internal")]
+	double TwilioVoiceClientVersionNumber { get; }
+
+	// extern const unsigned char [] TwilioVoiceClientVersionString;
+	[Field("TwilioVoiceClientVersionString", "__Internal")]
+	IntPtr TwilioVoiceClientVersionString { get; }
+}
+
 // @protocol TVONotificationDelegate <NSObject>
 [Protocol, Model]
 [BaseType(typeof(NSObject))]
@@ -38,12 +52,11 @@ interface TwilioVoice
 	// +(TwilioVoice * _Nonnull)sharedInstance;
 	[Static]
 	[Export("sharedInstance")]
-	//[Verify(MethodToProperty)]
+
 	TwilioVoice SharedInstance { get; }
 
 	// -(NSString * _Nonnull)version;
 	[Export("version")]
-	//[Verify(MethodToProperty)]
 	string Version { get; }
 
 	// -(void)setModule:(TVOLogModule)module logLevel:(TVOLogLevel)level;
@@ -73,18 +86,15 @@ interface TwilioVoice
 [BaseType(typeof(TwilioVoice))]
 interface TwilioVoice_CallKitIntegration
 {
-	// -(void)configureAudioSession __attribute__((availability(ios, introduced=10.0)));
-	[iOS(10, 0)]
+	// -(void)configureAudioSession __attribute__((availability(ios, introduced=10_0)));
 	[Export("configureAudioSession")]
 	void ConfigureAudioSession();
 
-	// -(void)startAudioDevice __attribute__((availability(ios, introduced=10.0)));
-	[iOS(10, 0)]
+	// -(void)startAudioDevice __attribute__((availability(ios, introduced=10_0)));
 	[Export("startAudioDevice")]
 	void StartAudioDevice();
 
-	// -(void)stopAudioDevice __attribute__((availability(ios, introduced=10.0)));
-	[iOS(10, 0)]
+	// -(void)stopAudioDevice __attribute__((availability(ios, introduced=10_0)));
 	[Export("stopAudioDevice")]
 	void StopAudioDevice();
 }
@@ -127,6 +137,7 @@ interface TVOCallInvite_CallKitIntegration
 {
 	// @property (readonly, nonatomic, strong) NSUUID * _Nonnull uuid;
 	[Export("uuid", ArgumentSemantic.Strong)]
+	[Static]
 	NSUuid Uuid { get; }
 }
 
@@ -179,6 +190,7 @@ interface TVOCall_CallKitIntegration
 {
 	// @property (nonatomic, strong) NSUUID * _Nonnull uuid;
 	[Export("uuid", ArgumentSemantic.Strong)]
+	[Static]
 	NSUuid Uuid { get; set; }
 }
 
